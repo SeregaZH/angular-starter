@@ -1,0 +1,11 @@
+<div class="card-deck mb-3 text-center">
+    <div class="card search-result-card" *ngFor="let item of searchResults">
+        <div class="card-body">
+            <h5 class="card-title">{{item.DisplayName}}</h5>
+            <p class="card-text" *ngFor="let text of item['@search.highlights']?.content" [innerHtml]="text"></p>
+        </div>
+        <div class="card-body card-button">
+            <a href="{{getItemPreviewLink(item)}}" class="btn btn-lg btn-primary">View on dropbox</a>
+        </div>
+    </div>
+</div>

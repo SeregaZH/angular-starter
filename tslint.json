@@ -14,6 +14,7 @@
   "rules": {
     "trailing-comma": [false, {"multiline": "always", "singleline": "never"}],
     "interface-name": [false, "always-prefix"],
+    "arrow-parens": false,
     "component-class-suffix": true,
     // "component-selector": [true, "element", "my", "kebab-case"],
     "directive-class-suffix": true,
@@ -34,6 +35,26 @@
       "time",
       "timeEnd",
       "trace"
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "private-static-field",
+          "protected-static-field",
+          "public-static-field",
+          "private-instance-field",
+          "protected-instance-field",
+          "public-instance-field",
+          "constructor",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
     ],
     "max-line-length": [
       true,

@@ -1,0 +1,3 @@
+<fi-search-box (onSearch)="changeSearch($event)"></fi-search-box>
+<search-results [searchResults]="(searchResults | async)?.data"></search-results>
+<paging [total]="(searchResults | async)?.total" [page]="currentPage" (pageChanged)="changePage($event)"></paging>
