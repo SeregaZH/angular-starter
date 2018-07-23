@@ -1,12 +1,17 @@
 import { Page, PageModelInterface, PagingComponent } from './paging.component';
-import {SimpleChange} from '@angular/core';
+import { SimpleChange } from '@angular/core';
 
 const expect = chai.expect;
 const moduleName = 'SearchModule';
 const componentName = 'PagingComponent';
 
 const ItemsPerPage: number = 50;
-declare type TestCase = { page: number, total: number, condition: string, expectResult: boolean };
+interface TestCaseInterface {
+    page: number;
+    total: number;
+    condition: string;
+    expectResult: boolean;
+}
 
 describe(`${moduleName}.${componentName} `, () => {
 
@@ -20,17 +25,23 @@ describe(`${moduleName}.${componentName} `, () => {
 
     describe('#showNextFrame ', () => {
 
-        let testSuite: TestCase[] = [
-            { page: 0, total: 50, expectResult: false, condition: "if total pages less than frameSize" },
-            { page: 5, total: 600, expectResult: true, condition: "if total pages greater than frameSize" },
-            { page: 8, total: 300, expectResult: false, condition: "if current page in the last frame" },
-            { page: 4, total: 400, expectResult: false, condition: "if current page in the start of the last frame" },
-            { page: 3, total: 400, expectResult: true, condition: "if current page in the end of pre end frame" }
+        const testSuite: TestCaseInterface[] = [
+            { page: 0, total: 50, expectResult: false, condition: 'if total pages less than' +
+                ' frameSize' },
+            { page: 5, total: 600, expectResult: true, condition: 'if total pages greater than' +
+                ' frameSize' },
+            { page: 8, total: 300, expectResult: false, condition: 'if current page in the last' +
+                ' frame' },
+            { page: 4, total: 400, expectResult: false, condition: 'if current page in the start' +
+                ' of the last frame' },
+            { page: 3, total: 400, expectResult: true, condition: 'if current page in the end of' +
+                ' pre end frame' }
         ];
 
-        _.forEach(testSuite, (testCase: TestCase) => {
+        _.forEach(testSuite, (testCase: TestCaseInterface) => {
 
-            it(`should ${ testCase.expectResult ? "enable" : "disable" } next frame button ${ testCase.condition }`,
+            it(`should ${ testCase.expectResult ? 'enable' : 'disable' }
+                next frame button ${testCase.condition }`,
                 () => {
 
                 // Arrange
@@ -38,7 +49,7 @@ describe(`${moduleName}.${componentName} `, () => {
                 testTarget.page = testCase.page;
 
                 // Act
-                let result = testTarget.showNextFrame;
+                const result = testTarget.showNextFrame;
 
                 //
                 expect(testCase.expectResult).to.be.eq(result);
@@ -48,24 +59,29 @@ describe(`${moduleName}.${componentName} `, () => {
 
     describe('#showPreviousFrame ', () => {
 
-        let testSuite: TestCase[] = [
-            { page: 1, total: 10, expectResult: false, condition: "if total pages less than frameSize" },
-            { page: 6, total: 600, expectResult: true, condition: "if total pages greater than frameSize" },
-            { page: 2, total: 300, expectResult: false, condition: "if current page in the first frame" },
-            { page: 4, total: 300, expectResult: true, condition: "if current page at the start of second frame" }
+        const testSuite: TestCaseInterface[] = [
+            { page: 1, total: 10, expectResult: false, condition: 'if total pages less than' +
+                ' frameSize' },
+            { page: 6, total: 600, expectResult: true, condition: 'if total pages greater than' +
+                ' frameSize' },
+            { page: 2, total: 300, expectResult: false, condition: 'if current page in the first' +
+                ' frame' },
+            { page: 4, total: 300, expectResult: true, condition: 'if current page at the start' +
+                ' of second frame' }
         ];
 
-        _.forEach(testSuite, (testCase: TestCase) => {
+        _.forEach(testSuite, (testCase: TestCaseInterface) => {
 
-            it(`should ${ testCase.expectResult ? "enable" : "disable" } previous frame button ${ testCase.condition }`,
-                () => {
+            it(`should ${ testCase.expectResult ? 'enable' : 'disable' }
+               previous frame button ${ testCase.condition }`,
+               () => {
 
                     // Arrange
                     testTarget.total = testCase.total;
                     testTarget.page = testCase.page;
 
                     // Act
-                    let result = testTarget.showPreviousFrame;
+                    const result = testTarget.showPreviousFrame;
 
                     //
                     expect(testCase.expectResult).to.be.eq(result);
@@ -76,13 +92,15 @@ describe(`${moduleName}.${componentName} `, () => {
     describe('#ngOnInit ', () => {
         it('should throw an error if parameters is invalid', () => {
             // Arrange
-            let validatorSpy = sinon.spy((c) => ( { valid: false, messages: ['A', 'B', 'C'] } ));
-            let invalidTarget = new PagingComponent(validatorSpy);
+            const validatorSpy = sinon.spy(
+                (c) => ( { valid: false, messages: ['A', 'B', 'C'] } )
+            );
+            const invalidTarget = new PagingComponent(validatorSpy);
 
             // Act
             try {
                 invalidTarget.ngOnInit();
-            } catch(e) {
+            } catch (e) {
                 expect(e.message).to.be.eq('A, B, C');
             }
 
@@ -95,7 +113,7 @@ describe(`${moduleName}.${componentName} `, () => {
 
         describe('should initialize ', () => {
 
-            let testCases = [{
+            const testCases = [{
                 expectedItems: {},
                 previousTotal: 0,
                 currentTotal: null,
@@ -111,9 +129,9 @@ describe(`${moduleName}.${componentName} `, () => {
                 message: 'empty pages collection if total is zero with first change'
             }, {
                 expectedItems: {
-                    '0': new Page(0, ItemsPerPage, true),
-                    '1': new Page(1, ItemsPerPage),
-                    '2': new Page(2, ItemsPerPage)
+                    0: new Page(0, ItemsPerPage, true),
+                    1: new Page(1, ItemsPerPage),
+                    2: new Page(2, ItemsPerPage)
                 },
                 previousTotal: 0,
                 page: 0,
@@ -122,7 +140,7 @@ describe(`${moduleName}.${componentName} `, () => {
                 message: '3 pages with first active'
             }, {
                 expectedItems: {
-                    '4': new Page(4, ItemsPerPage, true)
+                    4: new Page(4, ItemsPerPage, true)
                 },
                 previousTotal: 0,
                 page: 4,
@@ -140,7 +158,11 @@ describe(`${moduleName}.${componentName} `, () => {
 
                     // Act
                     testTarget.ngOnChanges(
-                        {'total': new SimpleChange(tc.previousTotal, tc.currentTotal, tc.firstChange)}
+                        { total: new SimpleChange(
+                                tc.previousTotal,
+                                tc.currentTotal,
+                                tc.firstChange
+                            ) }
                     );
 
                     // Assert
@@ -155,24 +177,24 @@ describe(`${moduleName}.${componentName} `, () => {
 
                 // Arrange
                 testTarget.framePages = {
-                    '0': new Page(0, ItemsPerPage),
-                    '1': new Page(1, ItemsPerPage),
-                    '2': new Page(2, ItemsPerPage),
-                    '3': new Page(3, ItemsPerPage, true)
+                    0: new Page(0, ItemsPerPage),
+                    1: new Page(1, ItemsPerPage),
+                    2: new Page(2, ItemsPerPage),
+                    3: new Page(3, ItemsPerPage, true)
                 };
                 testTarget.page = 3;
                 testTarget.total = 100;
 
                 // Act
                 testTarget.ngOnChanges(
-                    {'total': new SimpleChange(250, 100, false)}
+                    {total: new SimpleChange(250, 100, false)}
                 );
 
                 // Assert
                 expect(testTarget.page).to.be.eq(1);
                 expect(testTarget.framePages).to.be.eql({
-                    '0': new Page(0, ItemsPerPage),
-                    '1': new Page(1, ItemsPerPage, true)
+                    0: new Page(0, ItemsPerPage),
+                    1: new Page(1, ItemsPerPage, true)
                 });
             });
 
@@ -185,14 +207,14 @@ describe(`${moduleName}.${componentName} `, () => {
                 // Act
                 testTarget.total = 100;
                 testTarget.ngOnChanges(
-                    {'total': new SimpleChange(500, 100, false)}
+                    {total: new SimpleChange(500, 100, false)}
                 );
 
                 // Assert
                 expect(testTarget.page).to.be.eq(1);
                 expect(testTarget.framePages).to.be.eql({
-                    '0': new Page(0, ItemsPerPage),
-                    '1': new Page(1, ItemsPerPage, true)
+                    0: new Page(0, ItemsPerPage),
+                    1: new Page(1, ItemsPerPage, true)
                 });
 
             });
@@ -201,16 +223,16 @@ describe(`${moduleName}.${componentName} `, () => {
 
     describe('#changePage ', () => {
 
-        let changeEmitterStub = {
+        const changeEmitterStub = {
             emit: sinon.spy()
         };
 
         beforeEach(() => {
             testTarget.framePages = {
-                '0': new Page(0, ItemsPerPage, true),
-                '1': new Page(1, ItemsPerPage),
-                '2': new Page(2, ItemsPerPage),
-                '3': new Page(3, ItemsPerPage)
+                0: new Page(0, ItemsPerPage, true),
+                1: new Page(1, ItemsPerPage),
+                2: new Page(2, ItemsPerPage),
+                3: new Page(3, ItemsPerPage)
             };
             testTarget.total = 500;
             testTarget.page = 0;
@@ -251,10 +273,10 @@ describe(`${moduleName}.${componentName} `, () => {
                         page: 7
                     })).to.be.ok;
             expect(testTarget.framePages).eql({
-                '4': new Page(4, ItemsPerPage),
-                '5': new Page(5, ItemsPerPage),
-                '6': new Page(6, ItemsPerPage),
-                '7': new Page(7, ItemsPerPage, true)
+                4: new Page(4, ItemsPerPage),
+                5: new Page(5, ItemsPerPage),
+                6: new Page(6, ItemsPerPage),
+                7: new Page(7, ItemsPerPage, true)
             });
         });
 
@@ -263,10 +285,10 @@ describe(`${moduleName}.${componentName} `, () => {
             // Arrange
             testTarget = new PagingComponent((c) => ({ valid: true, messages: [] }));
             testTarget.framePages = {
-                '4': new Page(4, ItemsPerPage),
-                '5': new Page(5, ItemsPerPage),
-                '6': new Page(6, ItemsPerPage),
-                '7': new Page(7, ItemsPerPage, true)
+                4: new Page(4, ItemsPerPage),
+                5: new Page(5, ItemsPerPage),
+                6: new Page(6, ItemsPerPage),
+                7: new Page(7, ItemsPerPage, true)
             };
             testTarget.total = 500;
             testTarget.page = 7;
@@ -288,10 +310,10 @@ describe(`${moduleName}.${componentName} `, () => {
                         page: 2
                     }));
             expect(testTarget.framePages).eql({
-                '0': new Page(0, ItemsPerPage),
-                '1': new Page(1, ItemsPerPage),
-                '2': new Page(2, ItemsPerPage, true),
-                '3': new Page(3, ItemsPerPage)
+                0: new Page(0, ItemsPerPage),
+                1: new Page(1, ItemsPerPage),
+                2: new Page(2, ItemsPerPage, true),
+                3: new Page(3, ItemsPerPage)
             });
         });
     });
@@ -331,10 +353,10 @@ describe(`${moduleName}.${componentName} `, () => {
                         page: 5
                     })).to.be.ok;
             expect(testTarget.framePages).eql({
-                '4': new Page(4, ItemsPerPage),
-                '5': new Page(5, ItemsPerPage, true),
-                '6': new Page(6, ItemsPerPage),
-                '7': new Page(7, ItemsPerPage)
+                4: new Page(4, ItemsPerPage),
+                5: new Page(5, ItemsPerPage, true),
+                6: new Page(6, ItemsPerPage),
+                7: new Page(7, ItemsPerPage)
             });
         });
 
@@ -343,10 +365,10 @@ describe(`${moduleName}.${componentName} `, () => {
             // Arrange
             testTarget = new PagingComponent((c) => ({ valid: true, messages: [] }));
             testTarget.framePages = {
-                '0': new Page(0, ItemsPerPage),
-                '1': new Page(1, ItemsPerPage, true),
-                '2': new Page(2, ItemsPerPage),
-                '3': new Page(3, ItemsPerPage)
+                0: new Page(0, ItemsPerPage),
+                1: new Page(1, ItemsPerPage, true),
+                2: new Page(2, ItemsPerPage),
+                3: new Page(3, ItemsPerPage)
             };
             testTarget.total = 250;
             testTarget.page = 1;
@@ -365,7 +387,7 @@ describe(`${moduleName}.${componentName} `, () => {
                         <PageModelInterface>{ skip: ItemsPerPage * 4, top: ItemsPerPage, page: 4 })
             ).to.be.ok;
             expect(testTarget.framePages).eql({
-                '4': new Page(4, ItemsPerPage, true)
+                4: new Page(4, ItemsPerPage, true)
             });
         });
 
@@ -374,10 +396,10 @@ describe(`${moduleName}.${componentName} `, () => {
             // Arrange
             testTarget = new PagingComponent((c) => ({ valid: true, messages: [] }));
             testTarget.framePages = {
-                '0': new Page(0, ItemsPerPage),
-                '1': new Page(1, ItemsPerPage, true),
-                '2': new Page(2, ItemsPerPage),
-                '3': new Page(3, ItemsPerPage)
+                0: new Page(0, ItemsPerPage),
+                1: new Page(1, ItemsPerPage, true),
+                2: new Page(2, ItemsPerPage),
+                3: new Page(3, ItemsPerPage)
             };
 
             testTarget.page = 1;
@@ -385,7 +407,7 @@ describe(`${moduleName}.${componentName} `, () => {
             testTarget.pageChanged = changeEmitterStub;
 
             testTarget.total = 250;
-            testTarget.ngOnChanges({'total': new SimpleChange(500, 250, false) });
+            testTarget.ngOnChanges({ total: new SimpleChange(500, 250, false) });
             // Act
             testTarget.nextFrame();
 
@@ -398,22 +420,22 @@ describe(`${moduleName}.${componentName} `, () => {
                         <PageModelInterface>{ skip: ItemsPerPage * 4, top: ItemsPerPage, page: 4 })
             ).to.be.ok;
             expect(testTarget.framePages).eql({
-                '4': new Page(4, ItemsPerPage, true)
+                4: new Page(4, ItemsPerPage, true)
             });
         });
     });
 
     describe('#previousFrame', () => {
-        let changeEmitterStub = {
+        const changeEmitterStub = {
             emit: sinon.spy()
         };
 
         beforeEach(() => {
             testTarget.framePages = {
-                '4': new Page(0, ItemsPerPage, true),
-                '5': new Page(1, ItemsPerPage),
-                '6': new Page(2, ItemsPerPage),
-                '7': new Page(3, ItemsPerPage)
+                4: new Page(0, ItemsPerPage, true),
+                5: new Page(1, ItemsPerPage),
+                6: new Page(2, ItemsPerPage),
+                7: new Page(3, ItemsPerPage)
             };
             testTarget.total = 500;
             testTarget.page = 4;
@@ -431,12 +453,14 @@ describe(`${moduleName}.${componentName} `, () => {
             expect(
                 changeEmitterStub
                     .emit
-                    .calledWithExactly(<PageModelInterface>{ skip: 0, top: ItemsPerPage, page: 0 })).to.be.ok;
+                    .calledWithExactly(
+                         { skip: 0, top: ItemsPerPage, page: 0 } as PageModelInterface)
+            ).to.be.ok;
             expect(testTarget.framePages).eql({
-                '0': new Page(0, ItemsPerPage, true),
-                '1': new Page(1, ItemsPerPage),
-                '2': new Page(2, ItemsPerPage),
-                '3': new Page(3, ItemsPerPage)
+                0: new Page(0, ItemsPerPage, true),
+                1: new Page(1, ItemsPerPage),
+                2: new Page(2, ItemsPerPage),
+                3: new Page(3, ItemsPerPage)
             });
         });
     });

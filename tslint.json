@@ -13,12 +13,25 @@
   ],
   "rules": {
     "trailing-comma": [false, {"multiline": "always", "singleline": "never"}],
-    "interface-name": [false, "always-prefix"],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
     "arrow-parens": false,
-    "component-class-suffix": true,
-    // "component-selector": [true, "element", "my", "kebab-case"],
-    "directive-class-suffix": true,
-    // "directive-selector": [true, "attribute", "my", "camelCase"],
+    "array-type": [
+      true,
+      "array"
+    ],
+    "component-class-suffix": [
+      true,
+      "Component"
+    ],
+    "component-selector": [true, "element", "kebab-case"],
+    "directive-class-suffix": [
+      true,
+      "Directive"
+    ],
+    "directive-selector": [true, "attribute", "camelCase"],
     "import-destructuring-spacing": true,
     "no-attribute-parameter-decorator": true,
     "no-forward-ref": true,
@@ -31,11 +44,49 @@
     "use-life-cycle-interface": true,
     "use-output-property-decorator": true,
     "use-pipe-transform-interface": true,
-    "no-console": [true,
-      "time",
-      "timeEnd",
-      "trace"
+    "ordered-imports": false,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
     ],
+    "variable-name": [
+      true,
+      "allow-leading-underscore",
+      "allow-pascal-case",
+      "ban-keywords",
+      "check-format"
+    ],
+    "rxjs-collapse-imports": true,
+    "rxjs-pipeable-operators-only": true,
+    "rxjs-no-static-observable-methods": true,
+    "rxjs-proper-imports": true,
+    "adjacent-overload-signatures": true,
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements"
+    ],
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "curly": true,
+    "eofline": false,
+    "forin": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "jsdoc-format": true,
+    "label-position": true,
+    "max-line-length": [
+      true,
+      120
+    ],
+    "member-access": false,
     "member-ordering": [
       true,
       {
@@ -56,29 +107,95 @@
         ]
       }
     ],
-    "max-line-length": [
+    "new-parens": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-any": false,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": true,
+    "no-console": [
       true,
-      100
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace",
+      "log"
     ],
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-variable": true,
+    "no-string-throw": true,
+    "no-empty": true,
+    "no-eval": true,
+    "no-unused-new": true,
+    // false for now such as odata requed to use null explicit
+    "no-null-keyword": false,
+    "no-inferrable-types": false,
+    "no-shadowed-variable": true,
     "no-string-literal": false,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
     "no-use-before-declare": true,
+    "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
-    "quotemark": [
+    "no-magic-numbers": true,
+    "one-line": [
       true,
-      "single",
-      "avoid-escape"
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
     ],
-    "variable-name": [
+    /*1-5: easy to maintain
+6-10: difficult
+11-15: very difficult
+20+: approaching impossible*/
+    "cyclomatic-complexity": [
       true,
-      "allow-leading-underscore",
-      "allow-pascal-case",
-      "ban-keywords",
-      "check-format"
+      10
     ],
-    "rxjs-collapse-imports": true,
-    "rxjs-pipeable-operators-only": true,
-    "rxjs-no-static-observable-methods": true,
-    "rxjs-proper-imports": true
+    "max-classes-per-file": [
+      true,
+      5
+    ],
+    "max-file-line-count": [
+      true,
+      500
+    ],
+    "radix": true,
+    "semicolon": [
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-undefined-check"
+    ],
+    "typedef": true,
+    "import-blacklist": true,
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+    "use-isnan": true,
+    "templates-use-public": true,
+    "no-access-missing-member": true,
+    "invoke-injectable": true
   }
 }

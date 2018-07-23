@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import 'rxjs/add/operator/map';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SearchService, Query } from 'asc-test';

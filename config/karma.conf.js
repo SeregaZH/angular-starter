@@ -17,7 +17,12 @@ module.exports = function (config) {
      *
      * available frameworks: https://npmjs.org/browse/keyword/karma-adapter
      */
-    frameworks: ['jasmine'],
+    frameworks: [
+        'jasmine',
+        'chai',
+        'sinon',
+        'mocha'
+    ],
 
     /**
      * List of files to exclude.

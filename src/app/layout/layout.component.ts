@@ -1,9 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/buffer';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/skipUntil';
 
 @Component({
     selector: 'vd-layout',

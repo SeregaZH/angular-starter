@@ -13,6 +13,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const WebpackInlineManifestPlugin = require('webpack-inline-manifest-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
@@ -270,7 +271,15 @@ module.exports = function(options) {
        *
        * https://github.com/almothafar/webpack-inline-manifest-plugin
        */
-      new WebpackInlineManifestPlugin()
+      new WebpackInlineManifestPlugin(),
+      new ProvidePlugin({
+          _: 'lodash'/*,
+          $: 'jquery',
+          jQuery: 'jquery',
+          'Tether': 'tether',
+          'window.Tether': 'tether',
+          "window.jQuery": 'jquery'*/
+      }),
     ],
 
     /**

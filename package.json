@@ -1,7 +1,7 @@
 {
-  "name": "angular-starter",
-  "version": "7.5.0",
-  "description": "An Angular Webpack Starter kit featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by Tipe.io",
+  "name": "custom-angular-starter",
+  "version": "0.0.1",
+  "description": "Custom Angular Webpack Starter. Fork of https://github.com/gdi2290/angular-starter kit featuring Angular (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by Tipe.io",
   "keywords": [
     "angular",
     "angular2",
@@ -12,8 +12,8 @@
     "tipe",
     "tipe.io"
   ],
-  "author": "Patrick Stapleton <patrick@tipe.io>",
-  "homepage": "https://github.com/gdi2290/angular-starter",
+  "author": "Siarhei Zhalezka",
+  "homepage": "https://github.com/SeregaZH/angular-starter",
   "license": "MIT",
   "scripts": {
     "build:aot:prod": "rimraf dist compiled && cross-env BUILD_AOT=1 SOURCE_MAP=0 npm run webpack -- --config config/webpack.prod.js --progress --profile --bail",
@@ -109,21 +109,25 @@
     "lodash": "4.17.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-optimizer": "^0.6.8",
-    "@angular/cli": "^6.0.8",
+    "@angular-devkit/build-optimizer": "0.6.7",
+    "@angular/cli": "6.0.8",
     "@angular/compiler-cli": "^6.0.6",
     "@angular/language-service": "^6.0.6",
     "@compodoc/compodoc": "^1.1.3",
     "@ngtools/webpack": "^6.0.8",
     "@types/hammerjs": "^2.0.35",
     "@types/jasmine": "^2.8.8",
-    "@types/node": "^10.3.5",
+    "@types/lodash": "^4.14.112",
+    "@types/node": "^10.5.2",
     "@types/uglify-js": "^3.0.2",
+    "@types/chai": "4.1.4",
+    "@types/mocha": "5.2.3",
     "@types/webpack": "^4.4.2",
     "add-asset-html-webpack-plugin": "^2.1.3",
     "angular2-template-loader": "^0.6.2",
     "assets-webpack-plugin": "^3.8.4",
     "awesome-typescript-loader": "^5.2.0",
+    "chai": "4.1.2",
     "codelyzer": "^4.3.0",
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.2.0",
@@ -138,6 +142,9 @@
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^3.1.0",
     "karma": "^2.0.4",
+    "karma-chai": "0.1.0",
+    "karma-mocha": "1.3.0",
+    "karma-sinon": "1.0.5",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
     "karma-jasmine": "^1.1.2",
@@ -146,6 +153,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "mocha": "^5.2.0",
     "node-sass": "^4.9.0",
     "npm-run-all": "^4.1.3",
     "optimize-js-plugin": "^0.0.4",
@@ -156,6 +164,7 @@
     "rxjs-tslint": "^0.1.5",
     "sass-loader": "^7.0.3",
     "script-ext-html-webpack-plugin": "^2.0.1",
+    "sinon": "6.0.1",
     "source-map-loader": "^0.2.3",
     "string-replace-loader": "^2.1.1",
     "style-loader": "^0.21.0",
@@ -177,10 +186,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gdi2290/angular-starter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/gdi2290/angular-starter/issues"
+    "url": "https://github.com/SeregaZH/angular-starter.git"
   },
   "engines": {
     "node": ">= 8.0.0",

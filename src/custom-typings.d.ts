@@ -1,3 +1,5 @@
+
+/// <reference path="../node_modules/@types/lodash/index.d.ts" />
 /*
  * Custom Type Definitions
  * When including 3rd party modules you also need to include the type definition for the module
@@ -44,8 +46,8 @@ import * as _ from 'lodash'
  */
 
 // support NodeJS modules without type definitions
-declare module '*';
-
+// declare module '*';
+// import _ from 'lodash';
 /*
 // for legacy tslint etc to understand rename 'modern-lru' with your package
 // then comment out `declare module '*';`. For each new module copy/paste
@@ -139,3 +141,5 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+declare var sinon: any;
+declare var _: _.LoDashStatic;
