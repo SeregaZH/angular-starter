@@ -1,7 +1,8 @@
 import { Page, PageModelInterface, PagingComponent } from './paging.component';
 import { SimpleChange } from '@angular/core';
+import ExpectStatic = Chai.ExpectStatic;
 
-const expect = chai.expect;
+const expect: ExpectStatic = chai.expect;
 const moduleName = 'SearchModule';
 const componentName = 'PagingComponent';
 
@@ -42,7 +43,7 @@ describe(`${moduleName}.${componentName} `, () => {
 
             it(`should ${ testCase.expectResult ? 'enable' : 'disable' }
                 next frame button ${testCase.condition }`,
-                () => {
+               () => {
 
                 // Arrange
                 testTarget.total = testCase.total;
@@ -70,7 +71,7 @@ describe(`${moduleName}.${componentName} `, () => {
                 ' of second frame' }
         ];
 
-        _.forEach(testSuite, (testCase: TestCaseInterface) => {
+        testSuite.forEach((testCase: TestCaseInterface) => {
 
             it(`should ${ testCase.expectResult ? 'enable' : 'disable' }
                previous frame button ${ testCase.condition }`,
@@ -83,7 +84,7 @@ describe(`${moduleName}.${componentName} `, () => {
                     // Act
                     const result = testTarget.showPreviousFrame;
 
-                    //
+                    // Assert
                     expect(testCase.expectResult).to.be.eq(result);
                 });
         });
@@ -149,7 +150,7 @@ describe(`${moduleName}.${componentName} `, () => {
                 message: '1 page for second frame with fifth page active'
             }];
 
-            _.forEach(testCases, tc => {
+            testCases.forEach(tc => {
                 it(tc.message, () => {
 
                     // Arrange

@@ -1,4 +1,3 @@
-
 /// <reference path="../node_modules/@types/lodash/index.d.ts" />
 /*
  * Custom Type Definitions

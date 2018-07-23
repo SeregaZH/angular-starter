@@ -279,7 +279,7 @@ module.exports = function(options) {
           'Tether': 'tether',
           'window.Tether': 'tether',
           "window.jQuery": 'jquery'*/
-      }),
+      })
     ],
 
     /**

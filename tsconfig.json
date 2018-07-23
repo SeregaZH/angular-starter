@@ -24,10 +24,12 @@
     ],
     "types": [
       "hammerjs",
-      "jasmine",
       "node",
       "uglify-js",
-      "webpack"
+      "webpack",
+      "chai",
+      "jasmine",
+      "lodash"
     ]
   },
   "exclude": [

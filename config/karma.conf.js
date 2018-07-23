@@ -20,8 +20,7 @@ module.exports = function (config) {
     frameworks: [
         'jasmine',
         'chai',
-        'sinon',
-        'mocha'
+        'sinon'
     ],
 
     /**
